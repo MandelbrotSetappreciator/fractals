@@ -1,18 +1,18 @@
-% Define the size of the volume
-volumeSize = 1000;
+% Dimensions of cube
+Dimension = 1000;
 
 n=8; %order of the mandelbulb
 
 % empty volume array
-volumeData = zeros(volumeSize, volumeSize, volumeSize);
+Data = zeros(Dimension, Dimension, Dimension);
 
 %below is solution to equations for mapping
-a=4/(volumeSize*(1-1/volumeSize));
+a=4/(Dimension*(1-1/Dimension));
 b=-2-a;
 %looping through cartesian coordinates
-for k=1:volumeSize
-    for l=1:volumeSize
-        for m=1:volumeSize
+for k=1:Dimension
+    for l=1:Dimension
+        for m=1:Dimension
                 %establish origin
                 q=0;
                 r=0;
@@ -49,13 +49,13 @@ for k=1:volumeSize
                 end
                 end
                 if abs(rho)<2 %place a voxel if we never leave
-                volumeData(k,l,m)=1;
+                Data(k,l,m)=1;
                 end
         end
     end
 end
 
 
-% volshow(volumeData);
-customColormap = 'cyan'; %cyan is pretty
-viewer=volshow(volumeData, 'Colormap', customColormap); %plot the bih
+% volshow(Data);
+colormap = 'cyan'; %cyan is pretty
+volshow(Data, 'Colormap', colormap); %plot the bih
